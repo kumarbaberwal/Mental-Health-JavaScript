@@ -1,8 +1,10 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const QuotesRepository = require("../../application/interfaces/quotesrepository");
+const gemAPIKey = require("../../geminiapikey");
 
-const genAi = new GoogleGenerativeAI({ apiKey: "AIzaSyBa_O8vomjJDsbuC7hxNCSMOzEhpIPu1l4" });
+const genAi = new GoogleGenerativeAI(gemAPIKey);
 const model = genAi.getGenerativeModel({ model: "gemini-1.5-pro" });
+
 
 class GeminiApi extends QuotesRepository {
 
@@ -14,10 +16,10 @@ class GeminiApi extends QuotesRepository {
             "noonQuote": "Your noon quote here",
             "eveningQuote": "Your evening quote here"
         }. Return the JSON only, without using the keyword 'json'.`;
-        
-        const result = await model.generateContent({ prompt });
-        const response = result.response;
-        const text = await response.text();
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
         return JSON.parse(text);
     }
 
@@ -29,10 +31,10 @@ class GeminiApi extends QuotesRepository {
         }
         so the mood is "${mood}".
         Return the JSON only, without using the keyword 'json'.`;
-        
-        const result = await model.generateContent({ prompt });
-        const response = result.response;
-        const text = await response.text();
+
+        const result = await model.generateContent(prompt);
+        const response = await result.response;
+        const text = response.text();
         return JSON.parse(text);
     }
 }
