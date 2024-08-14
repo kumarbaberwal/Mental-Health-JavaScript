@@ -1,5 +1,5 @@
-class Meditation{
-    constructor({text}){
+class Meditation {
+    constructor({ text }) {
         this.text = text;
     }
 }

@@ -4,6 +4,6 @@ const MeditationController = require("../controllers/meditationcontroller");
 const router = express.Router();
 
 router.get('/dailyQuote', MeditationController.dailyQuote);
-router.get('/myMood:mood', MeditationController.myMood);
+router.get('/myMood/:mood', MeditationController.myMood);
 
 module.exports = router;

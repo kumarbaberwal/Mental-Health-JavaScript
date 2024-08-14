@@ -1,7 +1,6 @@
-class UsecaseInterface{
-    async execute(){
+class UsecaseInterface {
+    async execute() {
         throw new Error('Method not implemented');
-        
     }
 }
 
